@@ -403,3 +403,14 @@ add-zsh-hook chpwd () {
 add-zsh-hook preexec () {
   __timings_preexec
 }
+
+#-------------------------------------------------------------------------------
+#   LOCAL SCRIPTS
+#-------------------------------------------------------------------------------
+# source all zsh and sh files
+for script in $ZDOTDIR/scripts/*; do
+  source $script
+done
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

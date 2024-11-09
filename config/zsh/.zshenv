@@ -20,7 +20,9 @@ path+=(
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
 # --hidden: Search hidden files and folders
+
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
 export FZF_DEFAULT_OPTS="--reverse \
 --cycle \
 --bind=esc:abort \
