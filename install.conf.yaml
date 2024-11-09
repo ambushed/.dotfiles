@@ -1,0 +1,22 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ['~']
+
+- link:
+    ~/.tmux.conf: tmux.conf
+    ~/.config/zsh: config/zsh
+    ~/.zshrc: config/zsh/.zshrc
+    ~/.zshenv: config/zsh/.zshenv
+
+- create:
+    - ~/.ssh
+    - ~/.config
+    - ~/.cache
+    - ~/.cache/zsh
+    - ~/.config/nvim/undo/undo-history
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
