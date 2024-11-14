@@ -9,6 +9,7 @@
 # Git prompt script: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 
 setopt IGNORE_EOF
+source $HOME/.aliases
 
 fpath=($ZDOTDIR/functions $fpath)
 autoload -Uz last_working_dir

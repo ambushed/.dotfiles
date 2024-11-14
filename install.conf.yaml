@@ -6,10 +6,11 @@
 - clean: ['~']
 
 - link:
-    ~/.tmux.conf: tmux.conf
+    ~/.tmux.conf: config/tmux/tmux.conf
     ~/.config/zsh: config/zsh
     ~/.zshrc: config/zsh/.zshrc
     ~/.zshenv: config/zsh/.zshenv
+    ~/.aliases: config/zsh/.aliases
     ~/.fzf.zsh: config/zsh/fzf/fzf.zsh
 
 - create:
