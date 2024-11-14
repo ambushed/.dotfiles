@@ -8,6 +8,8 @@
 # https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
 # Git prompt script: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 
+setopt IGNORE_EOF
+
 fpath=($ZDOTDIR/functions $fpath)
 autoload -Uz last_working_dir
 
@@ -389,6 +391,7 @@ add-zsh-hook precmd () {
   __async_vcs_start # start async job to populate git info
 }
 
+export chpwd_recent_dirs_file="$ZSH_CACHE_DIR/.chpwd-recent-dirs"
 autoload -Uz chpwd_recent_dirs cdr
 autoload -Uz chpwd_last_working_dir cld
 
@@ -413,4 +416,11 @@ for script in $ZDOTDIR/scripts/*; do
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#-------------------------------------------------------------------------------
+#               MAPPINGS
+#-------------------------------------------------------------------------------
+export KEYTIMEOUT=1
+bindkey '^b' fbr    # branches
+bindkey '^h' fshow  # commits
 

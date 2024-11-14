@@ -1,0 +1,105 @@
+alias grep='grep --color'
+alias x="exit"
+alias del="rm -rf"
+alias md="mkdir -p"
+alias dots="cd $DOTFILES"
+alias cl='clear'
+alias src="exec $SHELL"
+alias ll="ls -ltr"
+
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+
+alias ez="vim ${ZDOTDIR:-$HOME}/.zshrc"
+alias et="vim ${XDG_CONFIG_HOME}/tmux/tmux.conf"
+
+
+#-------------------------------------------------------------------------------
+#  DIRECTORIES
+#-------------------------------------------------------------------------------
+alias ...="cd ../../.."
+alias ....="cd ../../../.."
+# @see: https://thevaluable.dev/zsh-install-configure-mouseless/
+# These mappings allow listing the directory stack and jumping to an entry
+# based on it's number in the list
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+#------------------------------------------------------------------------------
+# TMUX
+#------------------------------------------------------------------------------
+alias ta="tmux attach -t"
+alias td="tmux detach"
+alias tls="tmux ls"
+alias tkss="killall tmux"
+alias tkill="tmux kill-session -t"
+
+
+
+function git_main_branch() {
+  local branch
+  for branch in main trunk; do
+    if command git show-ref -q --verify refs/heads/$branch; then
+      echo $branch
+      return
+    fi
+  done
+  echo master
+}
+
+function grename() {
+  if [[ -z "$1" || -z "$2" ]]; then
+    echo "Usage: $0 old_branch new_branch"
+    return 1
+  fi
+
+  # Rename branch locally
+  git branch -m "$1" "$2"
+  # Rename branch in origin remote
+  if git push origin :"$1"; then
+    git push --set-upstream origin "$2"
+  fi
+}
+
+alias g="git"
+alias gs="git status"
+alias glog="git log"
+alias gss="git status -s"
+alias gst="git status"
+alias gc="git commit"
+alias gd="git diff"
+alias gco="git checkout"
+alias ga='git add'
+alias gaa='git add --all'
+alias gcb='git checkout -b'
+alias gb='git branch'
+alias gbD='git branch -D'
+alias gbl='git blame -b -w'
+alias gbr='git branch --remote'
+alias gc='git commit -v'
+alias gd='git diff'
+alias gf='git fetch'
+alias gfa='git fetch --all --prune'
+alias gfo='git fetch origin'
+alias gm='git merge'
+alias gma='git merge --abort'
+alias gmom='git merge origin/$(git_main_branch)'
+alias gp='git push'
+alias gbda='git branch --no-color --merged | command grep -vE "^(\+|\*|\s*($(git_main_branch)|development|develop|devel|dev)\s*$)" | command xargs -n 1 git branch -d'
+alias gpristine='git reset --hard && git clean -dffx'
+alias gcl='git clone --recurse-submodules'
+alias gcw="git clone git@github-work:$@.git"
+alias gl='git pull'
+alias glum='git pull upstream $(git_main_branch)'
+alias grhh='git reset --hard'
+alias groh='git reset origin/$(git_current_branch) --hard'
+alias grbi='git rebase -i'
+alias grbc='git rebase --continue'
+alias grbm='git rebase $(git_main_branch)'
+alias gcm='git checkout $(git_main_branch)'
+alias gcd="git checkout dev"
+alias gcb="git checkout -b"
+alias gstp="git stash pop"
+alias gsts="git stash show -p"
+

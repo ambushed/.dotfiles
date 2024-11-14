@@ -10,6 +10,7 @@
     ~/.config/zsh: config/zsh
     ~/.zshrc: config/zsh/.zshrc
     ~/.zshenv: config/zsh/.zshenv
+    ~/.fzf.zsh: config/zsh/fzf/fzf.zsh
 
 - create:
     - ~/.ssh

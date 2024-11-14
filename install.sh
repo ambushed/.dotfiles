@@ -24,6 +24,7 @@ packages=(
   "git"
   "gcc"
   "python"
+  "tmux"
   #"lazygit"
   #"thefuck"
   #"delta"
