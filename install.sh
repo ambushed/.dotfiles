@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Might as well ask for password up-front, right?
 echo "Starting install script, please grant me sudo access..."
@@ -41,7 +41,7 @@ install_missing_packages() {
       # Detect the platform (similar to $OSTYPE)
       case "$(uname)" in
         'Linux')
-          apt install "$p" || echo "$p failed to install"
+          sudo apt install "$p" || echo "$p failed to install"
           ;;
         'Darwin')
           brew install "$p" || echo "$p failed to install"
