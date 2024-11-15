@@ -1,8 +1,15 @@
+#/usr/bin/env bash
 
-export FZF_SHELL_PATH="$(brew --prefix fzf)/shell"
-
-[ -f "$FZF_SHELL_PATH/key-bindings.zsh" ] && source "$FZF_SHELL_PATH/key-bindings.zsh"
-[ -f "$FZF_SHELL_PATH/completion.zsh" ] && source "$FZF_SHELL_PATH/completion.zsh"
+if [[ "$(uname)" == "Darwin" ]]; then
+  export FZF_SHELL_PATH="$(brew --prefix fzf)/shell"
+  [ -f "$FZF_SHELL_PATH/key-bindings.zsh" ] && source "$FZF_SHELL_PATH/key-bindings.zsh"
+  [ -f "$FZF_SHELL_PATH/completion.zsh" ] && source "$FZF_SHELL_PATH/completion.zsh"
+else
+  if [[ ! "$PATH" == */home/vlad/.fzf/bin* ]]; then
+      PATH="${PATH:+${PATH}:}/home/vlad/.fzf/bin"
+  fi
+  source <(fzf --zsh)
+fi
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 fbr() {
