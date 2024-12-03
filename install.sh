@@ -25,6 +25,7 @@ packages=(
   "gcc"
   "python"
   "tmux"
+  "vifm"
   #"lazygit"
   #"thefuck"
   #"delta"
