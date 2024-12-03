@@ -8,6 +8,7 @@
 - link:
     ~/.tmux.conf: config/tmux/tmux.conf
     ~/.config/zsh: config/zsh
+    ~/.config/nvim: config/nvim
     ~/.zshrc: config/zsh/.zshrc
     ~/.zshenv: config/zsh/.zshenv
     ~/.aliases: config/zsh/.aliases
